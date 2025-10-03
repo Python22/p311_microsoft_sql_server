@@ -263,3 +263,166 @@
 
 
 
+-- ПРАКТИКА 1
+/*
+1. Вывести содержимое таблицы палат.
+*/
+--SELECT building, floor, name 
+--FROM Wards
+
+
+/*
+2. Вывести фамилии и телефоны всех врачей.
+*/
+--SELECT last_name, phone
+--FROM Doctors
+
+
+/*
+3. Вывести все этажи без повторений, на которых располагаются палаты.
+*/
+--SELECT DISTINCT floor 
+--FROM Wards
+
+
+
+
+
+/*
+4. Вывести названия заболеваний под именем “Name of Disease”
+и степень их тяжести под именем “Severity of Disease”
+*/
+--SELECT name AS 'Name of Disease', severity AS 'Severity of Disease'
+--FROM Diseases
+
+
+
+/*
+6. Вывести названия отделений, расположенных в корпусе
+5 и имеющих фонд финансирования менее 30000.
+*/
+--SELECT name
+--FROM Departments
+--WHERE building = 5 AND financing < 30000
+
+
+/*
+7. Вывести названия отделений, расположенных в 3-м корпусе
+с фондом финансирования в диапазоне от 12000 до 15000.
+*/
+-- Вариант 1
+--SELECT name
+--FROM Departments
+--WHERE building = 3 AND financing BETWEEN 12000 AND 15000
+
+---- Вариант 2
+--SELECT name
+--FROM Departments
+--WHERE building = 3 AND financing >= 12000 AND financing <= 15000
+
+
+
+
+
+/*
+8. Вывести названия палат, расположенных в корпусах 4 и 5
+на 1-м этаже.
+*/
+--SELECT name
+--FROM Wards
+--WHERE building IN (4, 5) AND floor = 1
+
+
+/*
+9. Вывести названия, корпуса и фонды финансирования отделений, 
+расположенных в корпусах 3 или 6 и имеющих
+фонд финансирования меньше 1 100 000 или больше 2500000.
+*/
+--SELECT name, building, financing
+--FROM Departments
+--WHERE building IN (3, 6) AND (financing < 1100000 OR financing > 2500000)
+
+
+
+/*
+10. Вывести фамилии врачей, чья зарплата (сумма ставки
+и надбавки) превышает 150000.
+*/
+--SELECT last_name
+--FROM Doctors
+--WHERE salary > 150000
+
+
+
+/*
+12. Вывести названия обследований без повторений, 
+проводимых в первые три дня недели, 
+которые начинались в диапазоне от 12:00 до 15:00.
+*/
+--SELECT * 
+--FROM Examinations
+--WHERE day_of_week <= 3 AND start_time >= '12:00' AND start_time <= '15:00'
+
+
+
+
+/*
+13. Вывести названия и номера корпусов отделений, 
+расположенных в корпусах 1, 3, 8 или 10.
+*/
+--SELECT [name], [building] 
+--FROM Departments
+--WHERE building IN (1, 3, 8, 10)
+
+
+
+
+/*
+14. Вывести названия заболеваний всех степеней тяжести,
+кроме 1-й и 2-й.
+*/
+---- вариант 1
+--SELECT * 
+--FROM Diseases
+--WHERE severity NOT IN (1, 2)
+
+---- вариант 2
+--SELECT * 
+--FROM Diseases
+--WHERE severity != 1 AND severity != 2
+
+---- вариант 3
+--SELECT * 
+--FROM Diseases
+--WHERE severity > 2
+
+
+
+
+/*
+15. Вывести названия отделений, которые не располагаются
+в 1-м или 3-м корпусе.
+*/
+--SELECT name
+--FROM Departments
+--WHERE building != 1 AND building != 3
+
+
+
+/*
+16. Вывести названия отделений, которые располагаются в 1-м
+или 3-м корпусе.
+*/
+--SELECT name
+--FROM Departments
+--WHERE building = 1 OR building = 3
+
+
+
+
+/*
+17. Вывести фамилии врачей, начинающиеся на букву “П”.
+*/
+--SELECT last_name
+--FROM Doctors
+--WHERE last_name LIKE N'П%'
