@@ -426,3 +426,12 @@
 --SELECT last_name
 --FROM Doctors
 --WHERE last_name LIKE N'П%'
+
+
+
+
+
+
+
+
+
