@@ -23,3 +23,21 @@ CREATE TABLE Models(
 	brand_id INT NOT NULL,
 	CONSTRAINT FK_Models_Brands FOREIGN KEY (brand_id) REFERENCES Brands(id) ON DELETE CASCADE
 )
+
+
+
+
+
+
+INSERT INTO Brands
+VALUES
+('Lada', 'Russia'),
+('BMW', 'Germany'),
+('Opel', 'Germany'),
+('Audi', 'Germany'),
+('Mercedes', 'Germany'),
+('Porshe', 'Germany'),
+('Ferrari', 'Italy'),
+('Lamborghini', 'Italy'),
+('Ford', 'USA'),
+('Dodge', 'USA')
