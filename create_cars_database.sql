@@ -76,3 +76,193 @@ VALUES
 ('Viper', 2013, 10),
 ('Charger', 1975, 10)
 
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * 
+FROM Brands AS B, Models M
+WHERE B.id = M.brand_id
+
+
+
+SELECT B.name, M.name, M.year, B.country
+FROM Brands AS B, Models M
+WHERE B.id = M.brand_id
+
+
+
+SELECT B.name AS brand, M.name AS model, M.year, B.country
+FROM Brands AS B, Models M
+WHERE B.id = M.brand_id
+
+
+
+
+
+/*
+Получить все модели, который принадлежат производителям из Германии, 
+сортировать по бренду.
+*/
+-- Способ 1
+SELECT * 
+FROM Models M, Brands B
+WHERE M.brand_id = B.id AND B.country = 'Germany'
+ORDER BY B.name
+
+
+
+-- Способ 2
+SELECT * 
+FROM Models AS M
+JOIN Brands AS B ON B.id = M.brand_id
+WHERE B.country = 'Germany'
+ORDER BY B.name
+
+
+
+
+
+/*
+Вывести бренды и количество моделей у каждого из них
+*/
+SELECT B.name AS brand, COUNT(M.id) AS count_of_models
+FROM Brands AS B
+JOIN Models AS M ON B.id = M.brand_id
+GROUP BY B.id, B.name
+ORDER BY B.name
+
+
+
+
+
+
+
+/*
+Показать все модели определённого бренда,
+например Ferrari,
+которые новее 2010 года
+*/
+---- Способ 1
+SELECT B.name AS brand, M.name AS model, M.year, B.country 
+FROM Brands AS B
+JOIN Models AS M ON B.id = M.brand_id
+WHERE B.name = 'Ferrari' AND M.year > 2010
+
+
+
+---- Способ 2
+SELECT B.name AS brand, M.name AS model, M.year, B.country 
+FROM Brands AS B, Models AS M
+WHERE B.id = M.brand_id AND B.name = 'Ferrari' AND M.year > 2010
+
+
+
+
+
+
+
+/*
+Вывести модели с полной инфой, у которых в названии модели есть буква 'e'
+*/
+---- Способ 1
+SELECT *
+FROM Brands AS B, Models AS M
+WHERE B.id = M.brand_id AND M.name LIKE '%e%'
+
+
+---- Способ 2
+SELECT *
+FROM Brands AS B
+JOIN Models AS M ON B.id = M.brand_id
+WHERE M.name LIKE '%e%'
+
+
+
+/*
+Вывести полную инфу про модели, которые выпускались между 2010 и 2020
+*/
+---- способ 1
+SELECT *
+FROM Brands AS B, Models AS M
+WHERE B.id = M.brand_id AND M.year >= 2010 AND M.year <= 2020
+
+
+
+---- способ 2
+SELECT *
+FROM Brands AS B, Models AS M
+WHERE B.id = M.brand_id AND M.year BETWEEN 2010 AND 2020
+
+
+
+
+
+
+
+
+
+
+-- Создание таблицы пользователей
+CREATE TABLE Users (
+	id INT IDENTITY(1, 1) PRIMARY KEY,
+	first_name NVARCHAR(50) NOT NULL,
+	last_name NVARCHAR(50) NOT NULL,
+	phone NVARCHAR(15) NOT NULL UNIQUE
+)
+
+
+
+-- создание сквозной таблиц для связи многие-ко-многим(many-to-many)
+CREATE TABLE UsersModels (
+	user_id INT NOT NULL,
+	model_id INT NOT NULL,
+	PRIMARY KEY(user_id, model_id),
+	CONSTRAINT FK_UsersModels_Users FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+	CONSTRAINT FK_UsersModels_Models FOREIGN KEY (model_id) REFERENCES Models(id) ON DELETE CASCADE
+)
+
+
+
+
+
+--SELECT * FROM UsersModels
+
+
+
+
+
+
+
+/*
+Вывести все машины определённого человека
+*/
+---- способ 1
+SELECT * 
+FROM Models AS M, Users AS U, UsersModels AS UM
+WHERE UM.model_id = M.id AND UM.user_id = U.id AND U.first_name = 'vasya'
+
+
+---- способ 2
+SELECT * 
+FROM UsersModels AS UM
+JOIN Users AS U ON UM.user_id = U.id
+JOIN Models AS M ON UM.model_id = M.id
+WHERE U.first_name = 'vasya'
+
+
+
+
+
+
+
+
+
