@@ -360,8 +360,48 @@
 7. Вывести названия палат и корпуса отделений, в которых
 проводит обследования определённый врач
 */
-SELECT * 
-FROM 
+--SELECT W.name AS ward, Dep.name AS department, Doc.last_name + ' ' + Doc.first_name AS doctor
+--FROM PatientsExaminations AS PE
+--JOIN Doctors AS Doc ON Doc.id = PE.doctor_id
+--JOIN DoctorsDepartments AS DD ON Doc.id = DD.doctor_id
+--JOIN Departments AS Dep ON Dep.id = DD.department_id
+--JOIN Wards AS W ON W.department_id = Dep.id
+--WHERE Doc.last_name = 'Vasin'
 
 
 
+
+/*
+8. Вывести названия отделений и врачей, 
+у которых ставка больше 150000.
+*/
+--SELECT Doc.last_name, Doc.first_name, Dep.name, Doc.salary
+--FROM DoctorsDepartments AS DD
+--JOIN Doctors AS Doc ON Doc.id = DD.doctor_id
+--JOIN Departments AS Dep ON Dep.id = DD.department_id
+--WHERE Doc.salary > 150000
+
+
+
+
+
+/*
+Вывести диагнозы определённого пациента
+*/
+--SELECT P.last_name + ' ' + P.first_name AS patient, D.name AS diagnosis 
+--FROM PatientsDiagnoses AS PD
+--JOIN Patients AS P ON P.id = PD.patient_id
+--JOIN Diagnoses AS D ON D.id = PD.diagnosis_id
+--WHERE P.last_name = 'Ronaldo'
+
+
+
+
+
+-- показать сколько диагнозов у определённого пациента
+--SELECT COUNT(P.id)
+--FROM PatientsDiagnoses AS PD
+--JOIN Patients AS P ON P.id = PD.patient_id
+--JOIN Diagnoses AS D ON D.id = PD.diagnosis_id
+--WHERE P.last_name = 'Ronaldo'
+--GROUP BY (P.id)
