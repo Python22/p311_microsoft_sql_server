@@ -296,3 +296,72 @@
 
 
 
+
+
+
+
+
+
+/*
+Вывести палаты, отделения, и их пациентов
+*/
+
+--SELECT P.last_name, P.first_name, P.medical_id, W.name AS ward, D.name AS department
+--FROM Patients AS P
+--JOIN Wards AS W ON P.ward_id = W.id
+--JOIN Departments AS D ON D.id = W.department_id
+
+
+
+
+/*
+Вывести палату и отделение где лежит определённый пациент
+*/
+--SELECT P.last_name, P.first_name, P.medical_id, W.name AS ward, D.name AS department
+--FROM Patients AS P
+--JOIN Wards AS W ON P.ward_id = W.id
+--JOIN Departments AS D ON D.id = W.department_id
+--WHERE P.last_name = 'Messi' AND P.first_name = 'Lionell'
+
+
+
+
+/*
+Вывести все процедуры(обследования), с полной информацией которые есть в больнице
+*/
+--SELECT E.type, P.last_name + ' ' + P.first_name AS patient, D.last_name + ' ' + D.first_name AS doctor, W.name AS ward
+--FROM PatientsExaminations AS PE
+--JOIN Examinations AS E ON PE.examination_id = E.id
+--JOIN Doctors AS D ON PE.doctor_id = D.id 
+--JOIN Patients AS P ON PE.patient_id = P.id
+--JOIN Wards AS W ON P.ward_id = W.id
+
+
+
+/*
+Вывести все процедуры(обследования), которые есть у определённого пациента
+*/
+--SELECT E.type, P.last_name + ' ' + P.first_name AS patient, D.last_name + ' ' + D.first_name AS doctor, W.name AS ward
+--FROM PatientsExaminations AS PE
+--JOIN Examinations AS E ON PE.examination_id = E.id
+--JOIN Doctors AS D ON PE.doctor_id = D.id 
+--JOIN Patients AS P ON PE.patient_id = P.id
+--JOIN Wards AS W ON P.ward_id = W.id
+--WHERE P.last_name = 'Messi'
+
+
+
+
+
+
+
+
+/*
+7. Вывести названия палат и корпуса отделений, в которых
+проводит обследования определённый врач
+*/
+SELECT * 
+FROM 
+
+
+
