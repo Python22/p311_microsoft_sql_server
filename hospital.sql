@@ -405,3 +405,39 @@
 --JOIN Diagnoses AS D ON D.id = PD.diagnosis_id
 --WHERE P.last_name = 'Ronaldo'
 --GROUP BY (P.id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---- Этап 1
+--CREATE DATABASE p311_simple_internet_shope_prepod
+
+
+---- Этап 2
+--USE p311_simple_internet_shope_prepod
+
+
+
+--CREATE TABLE Products (
+--	id INT IDENTITY(1, 1) PRIMARY KEY,
+--	name NVARCHAR(50) NOT NULL,
+--	price 
+--)
+
+
+
+
+
+
+
