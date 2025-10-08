@@ -248,3 +248,51 @@
 --(1, 7, 4),
 --(2, 7, 1),
 --(2, 1, 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+1. Вывести полные имена врачей и их отделения.
+*/
+--SELECT Doc.last_name, Doc.first_name, Dep.name
+--FROM DoctorsDepartments AS DD
+--JOIN Doctors AS Doc ON Doc.id = DD.doctor_id
+--JOIN Departments Dep ON Dep.id = DD.department_id
+--ORDER BY (Doc.last_name)
+
+
+/*
+3. Вывести названия палат, которые находятся в отделении
+“Стоматология”.
+*/
+-- способ 1
+--SELECT W.name 
+--FROM Wards AS W
+--JOIN Departments AS D ON W.department_id = D.id
+--WHERE D.name = N'Стоматология'
+
+
+-- способ 2, с помощью вложенного запроса
+
+--SELECT name
+--FROM Wards
+--WHERE department_id = (
+--	SELECT id FROM Departments
+--	WHERE name = N'Стоматология'
+--)
+
+
+
