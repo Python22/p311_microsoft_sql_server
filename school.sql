@@ -281,96 +281,180 @@
 
 
 
-INSERT INTO Shedule 
-(
-discipline_id,
-teacher_id,
-cabinet_id,
-class_id,
-lesson_number_id,
-day_of_week_id
-)
-VALUES
-(
-(SELECT id FROM Disciplines WHERE name = N'Математика'),
-(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
-(SELECT id FROM Cabinets WHERE name = N'2'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 1),
-(SELECT id FROM DayOfWeeks WHERE id = 1)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Математика'),
-(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
-(SELECT id FROM Cabinets WHERE name = N'8'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 2),
-(SELECT id FROM DayOfWeeks WHERE id = 1)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Химия'),
-(SELECT id FROM Teachers WHERE last_name = N'Менделеев'),
-(SELECT id FROM Cabinets WHERE name = N'9'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 3),
-(SELECT id FROM DayOfWeeks WHERE id = 1)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Экономика'),
-(SELECT id FROM Teachers WHERE last_name = N'Смит'),
-(SELECT id FROM Cabinets WHERE name = N'2'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 4),
-(SELECT id FROM DayOfWeeks WHERE id = 1)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Физкультура'),
-(SELECT id FROM Teachers WHERE last_name = N'Роналду'),
-(SELECT id FROM Cabinets WHERE name = N'Спорт-зал'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 5),
-(SELECT id FROM DayOfWeeks WHERE id = 1)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Химия'),
-(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
-(SELECT id FROM Cabinets WHERE name = N'12'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 1),
-(SELECT id FROM DayOfWeeks WHERE id = 2)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Биология'),
-(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
-(SELECT id FROM Cabinets WHERE name = N'15'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 2),
-(SELECT id FROM DayOfWeeks WHERE id = 2)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Математика'),
-(SELECT id FROM Teachers WHERE last_name = N'Менделеев'),
-(SELECT id FROM Cabinets WHERE name = N'9'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 3),
-(SELECT id FROM DayOfWeeks WHERE id = 2)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Экономика'),
-(SELECT id FROM Teachers WHERE last_name = N'Смит'),
-(SELECT id FROM Cabinets WHERE name = N'2'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 4),
-(SELECT id FROM DayOfWeeks WHERE id = 2)
-),
-(
-(SELECT id FROM Disciplines WHERE name = N'Физкультура'),
-(SELECT id FROM Teachers WHERE last_name = N'Роналду'),
-(SELECT id FROM Cabinets WHERE name = N'Спорт-зал'),
-(SELECT id FROM Classes WHERE name = N'9-Б'),
-(SELECT id FROM LessonNumbers WHERE id = 5),
-(SELECT id FROM DayOfWeeks WHERE id = 2)
-)
+--INSERT INTO Shedule 
+--(
+--discipline_id,
+--teacher_id,
+--cabinet_id,
+--class_id,
+--lesson_number_id,
+--day_of_week_id
+--)
+--VALUES
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Математика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
+--(SELECT id FROM Cabinets WHERE name = N'2'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 1),
+--(SELECT id FROM DayOfWeeks WHERE id = 1)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Математика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
+--(SELECT id FROM Cabinets WHERE name = N'8'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 2),
+--(SELECT id FROM DayOfWeeks WHERE id = 1)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Химия'),
+--(SELECT id FROM Teachers WHERE last_name = N'Менделеев'),
+--(SELECT id FROM Cabinets WHERE name = N'9'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 3),
+--(SELECT id FROM DayOfWeeks WHERE id = 1)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Экономика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Смит'),
+--(SELECT id FROM Cabinets WHERE name = N'2'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 4),
+--(SELECT id FROM DayOfWeeks WHERE id = 1)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физкультура'),
+--(SELECT id FROM Teachers WHERE last_name = N'Роналду'),
+--(SELECT id FROM Cabinets WHERE name = N'Спорт-зал'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 5),
+--(SELECT id FROM DayOfWeeks WHERE id = 1)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Химия'),
+--(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
+--(SELECT id FROM Cabinets WHERE name = N'12'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 1),
+--(SELECT id FROM DayOfWeeks WHERE id = 2)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--(SELECT id FROM Cabinets WHERE name = N'15'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 2),
+--(SELECT id FROM DayOfWeeks WHERE id = 2)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Математика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Менделеев'),
+--(SELECT id FROM Cabinets WHERE name = N'9'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 3),
+--(SELECT id FROM DayOfWeeks WHERE id = 2)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Экономика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Смит'),
+--(SELECT id FROM Cabinets WHERE name = N'2'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 4),
+--(SELECT id FROM DayOfWeeks WHERE id = 2)
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физкультура'),
+--(SELECT id FROM Teachers WHERE last_name = N'Роналду'),
+--(SELECT id FROM Cabinets WHERE name = N'Спорт-зал'),
+--(SELECT id FROM Classes WHERE name = N'9-Б'),
+--(SELECT id FROM LessonNumbers WHERE id = 5),
+--(SELECT id FROM DayOfWeeks WHERE id = 2)
+--)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Вывести всех учеников 9-Б в алфавитном порядке
+*/
+--SELECT *
+--FROM Students AS S
+--JOIN Classes AS C ON S.class_id = C.id 
+--WHERE C.name = N'9-Б'
+--ORDER BY (last_name)
+
+
+
+/*
+Посчитать сколько всего учеников в школе
+*/
+--SELECT COUNT(id) AS result
+--FROM Students
+
+
+
+
+
+
+/*
+Все учителя школы и их классы(даже если их нет, это будет указано)
+*/
+--SELECT *
+--FROM Teachers AS T
+--LEFT JOIN Classes AS C ON C.class_teacher_id = T.id
+
+
+
+/*
+Учителя, которые не приписаны как классный руководитель к какому-либо классу.
+*/
+--SELECT *
+--FROM Teachers AS T
+--LEFT JOIN Classes AS C ON C.class_teacher_id = T.id
+--WHERE C.id is NULL
+
+
+
+
+
+
+
+/*
+Вывести всё расписание для определённого класса
+*/
+SELECT 
+DOW.name AS 'День недели', 
+LN.id AS 'Номер урока',
+Di.name AS 'Урок', 
+Cl.name AS 'Класс', 
+Ca.name AS 'Кабинет', 
+LN.start_time AS 'Начало урока', 
+LN.end_time AS 'Конец урока', 
+Te.last_name + ' ' + Te.first_name AS 'Учитель'
+FROM Shedule AS Sh
+JOIN Classes AS Cl ON Sh.class_id = Cl.id
+JOIN Cabinets AS Ca ON Sh.cabinet_id = Ca.id
+JOIN Disciplines AS Di ON Sh.discipline_id = Di.id
+JOIN Teachers AS Te ON Sh.teacher_id = Te.id
+JOIN LessonNumbers AS LN ON Sh.lesson_number_id = LN.id
+JOIN DayOfWeeks AS DOW ON Sh.day_of_week_id = DOW.id
+WHERE Cl.name = N'9-Б'
+
+
+
+
 
 
 
