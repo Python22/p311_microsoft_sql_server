@@ -166,20 +166,20 @@
 --INSERT INTO Disciplines 
 --(name)
 --VALUES 
---('Математика'),
---('Физика'),
---('Химия'),
---('География'),
---('История'),
---('Русский язык'),
---('Литература'),
---('Физкультура'),
---('Обществознание'),
---('Экономика'),
---('ИЗО'),
---('Биология'),
---('Английския язык'),
---('Информатика')
+--(N'Математика'),
+--(N'Физика'),
+--(N'Химия'),
+--(N'География'),
+--(N'История'),
+--(N'Русский язык'),
+--(N'Литература'),
+--(N'Физкультура'),
+--(N'Обществознание'),
+--(N'Экономика'),
+--(N'ИЗО'),
+--(N'Биология'),
+--(N'Английския язык'),
+--(N'Информатика')
 
 
 
@@ -245,6 +245,132 @@
 --(N'Петя', N'йцуцукуке', '2010-10-18', (SELECT id FROM Classes WHERE name = N'9-Б'))
 
 
+
+
+
+
+
+
+--INSERT INTO TeacherDisciplines
+--(teacher_id, discipline_id)
+--VALUES
+--((SELECT id FROM Teachers WHERE last_name = N'Пушкин'), (SELECT id FROM Disciplines WHERE name = N'Литература')),
+--((SELECT id FROM Teachers WHERE last_name = N'Дарвин'), (SELECT id FROM Disciplines WHERE name = N'Биология')),
+--((SELECT id FROM Teachers WHERE last_name = N'Колумб'), (SELECT id FROM Disciplines WHERE name = N'География')),
+--((SELECT id FROM Teachers WHERE last_name = N'Менделеев'), (SELECT id FROM Disciplines WHERE name = N'Химия')),
+--((SELECT id FROM Teachers WHERE last_name = N'Перельман'), (SELECT id FROM Disciplines WHERE name = N'Математика')),
+--((SELECT id FROM Teachers WHERE last_name = N'Смит'), (SELECT id FROM Disciplines WHERE name = N'Экономика')),
+--((SELECT id FROM Teachers WHERE last_name = N'Гумилёв'), (SELECT id FROM Disciplines WHERE name = N'История')),
+--((SELECT id FROM Teachers WHERE last_name = N'Да Винчи'), (SELECT id FROM Disciplines WHERE name = N'ИЗО')),
+--((SELECT id FROM Teachers WHERE last_name = N'Дуров'), (SELECT id FROM Disciplines WHERE name = N'Информатика')),
+--((SELECT id FROM Teachers WHERE last_name = N'Роналду'), (SELECT id FROM Disciplines WHERE name = N'Физкультура')),
+--((SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'), (SELECT id FROM Disciplines WHERE name = N'Физика')),
+--((SELECT id FROM Teachers WHERE last_name = N'Пушкин'), (SELECT id FROM Disciplines WHERE name = N'Русский язык')),
+--((SELECT id FROM Teachers WHERE last_name = N'Смит'), (SELECT id FROM Disciplines WHERE name = N'Английския язык'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Shedule 
+(
+discipline_id,
+teacher_id,
+cabinet_id,
+class_id,
+lesson_number_id,
+day_of_week_id
+)
+VALUES
+(
+(SELECT id FROM Disciplines WHERE name = N'Математика'),
+(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
+(SELECT id FROM Cabinets WHERE name = N'2'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 1),
+(SELECT id FROM DayOfWeeks WHERE id = 1)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Математика'),
+(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
+(SELECT id FROM Cabinets WHERE name = N'8'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 2),
+(SELECT id FROM DayOfWeeks WHERE id = 1)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Химия'),
+(SELECT id FROM Teachers WHERE last_name = N'Менделеев'),
+(SELECT id FROM Cabinets WHERE name = N'9'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 3),
+(SELECT id FROM DayOfWeeks WHERE id = 1)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Экономика'),
+(SELECT id FROM Teachers WHERE last_name = N'Смит'),
+(SELECT id FROM Cabinets WHERE name = N'2'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 4),
+(SELECT id FROM DayOfWeeks WHERE id = 1)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Физкультура'),
+(SELECT id FROM Teachers WHERE last_name = N'Роналду'),
+(SELECT id FROM Cabinets WHERE name = N'Спорт-зал'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 5),
+(SELECT id FROM DayOfWeeks WHERE id = 1)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Химия'),
+(SELECT id FROM Teachers WHERE last_name = N'Перельман'),
+(SELECT id FROM Cabinets WHERE name = N'12'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 1),
+(SELECT id FROM DayOfWeeks WHERE id = 2)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Биология'),
+(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+(SELECT id FROM Cabinets WHERE name = N'15'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 2),
+(SELECT id FROM DayOfWeeks WHERE id = 2)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Математика'),
+(SELECT id FROM Teachers WHERE last_name = N'Менделеев'),
+(SELECT id FROM Cabinets WHERE name = N'9'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 3),
+(SELECT id FROM DayOfWeeks WHERE id = 2)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Экономика'),
+(SELECT id FROM Teachers WHERE last_name = N'Смит'),
+(SELECT id FROM Cabinets WHERE name = N'2'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 4),
+(SELECT id FROM DayOfWeeks WHERE id = 2)
+),
+(
+(SELECT id FROM Disciplines WHERE name = N'Физкультура'),
+(SELECT id FROM Teachers WHERE last_name = N'Роналду'),
+(SELECT id FROM Cabinets WHERE name = N'Спорт-зал'),
+(SELECT id FROM Classes WHERE name = N'9-Б'),
+(SELECT id FROM LessonNumbers WHERE id = 5),
+(SELECT id FROM DayOfWeeks WHERE id = 2)
+)
 
 
 
