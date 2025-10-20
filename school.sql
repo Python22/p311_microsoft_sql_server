@@ -434,23 +434,214 @@
 /*
 Вывести всё расписание для определённого класса
 */
-SELECT 
-DOW.name AS 'День недели', 
-LN.id AS 'Номер урока',
-Di.name AS 'Урок', 
-Cl.name AS 'Класс', 
-Ca.name AS 'Кабинет', 
-LN.start_time AS 'Начало урока', 
-LN.end_time AS 'Конец урока', 
-Te.last_name + ' ' + Te.first_name AS 'Учитель'
-FROM Shedule AS Sh
-JOIN Classes AS Cl ON Sh.class_id = Cl.id
-JOIN Cabinets AS Ca ON Sh.cabinet_id = Ca.id
-JOIN Disciplines AS Di ON Sh.discipline_id = Di.id
-JOIN Teachers AS Te ON Sh.teacher_id = Te.id
-JOIN LessonNumbers AS LN ON Sh.lesson_number_id = LN.id
-JOIN DayOfWeeks AS DOW ON Sh.day_of_week_id = DOW.id
-WHERE Cl.name = N'9-Б'
+--SELECT 
+--DOW.name AS 'День недели', 
+--LN.id AS 'Номер урока',
+--Di.name AS 'Урок', 
+--Cl.name AS 'Класс', 
+--Ca.name AS 'Кабинет', 
+--LN.start_time AS 'Начало урока', 
+--LN.end_time AS 'Конец урока', 
+--Te.last_name + ' ' + Te.first_name AS 'Учитель'
+--FROM Shedule AS Sh
+--JOIN Classes AS Cl ON Sh.class_id = Cl.id
+--JOIN Cabinets AS Ca ON Sh.cabinet_id = Ca.id
+--JOIN Disciplines AS Di ON Sh.discipline_id = Di.id
+--JOIN Teachers AS Te ON Sh.teacher_id = Te.id
+--JOIN LessonNumbers AS LN ON Sh.lesson_number_id = LN.id
+--JOIN DayOfWeeks AS DOW ON Sh.day_of_week_id = DOW.id
+--WHERE Cl.name = N'9-Б'
+
+
+
+
+
+
+
+
+
+-- Вставка данных про оценки
+-- вставка через переменные
+--DECLARE 
+--@discipline_name NVARCHAR = N'Физика',
+--@teacher_last_name NVARCHAR = N'Эейнштейн',	
+--@student_id INT = 6,
+--@mark INT = 3,
+--@date DATE = '2025-10-20'
+
+--INSERT INTO Marks 
+--(
+--discipline_id,
+--teacher_id,
+--student_id,
+--mark,
+--mark_date
+--)
+--VALUES
+--(
+--(SELECT id FROM Disciplines WHERE name = @discipline_name),
+--(SELECT id FROM Teachers WHERE last_name = @teacher_last_name),
+--@student_id,
+--@mark,
+--@date
+--)
+
+
+
+-- множественная вставка оценок
+--INSERT INTO Marks 
+--(
+--discipline_id,
+--teacher_id,
+--student_id,
+--mark,
+--mark_date
+--)
+--VALUES
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--6,
+--3,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--3,
+--5,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--8,
+--5,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--9,
+--3,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--2,
+--4,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--1,
+--2,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--9,
+--5,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Физика'),
+--(SELECT id FROM Teachers WHERE last_name = N'Эейнштейн'),
+--10,
+--5,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--5,
+--3,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--1,
+--4,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--7,
+--5,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--10,
+--5,
+--'2025-10-20'
+--),(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--10,
+--2,
+--'2025-10-20'
+--),
+--(
+--(SELECT id FROM Disciplines WHERE name = N'Биология'),
+--(SELECT id FROM Teachers WHERE last_name = N'Дарвин'),
+--12,
+--2,
+--'2025-10-20'
+--)
+
+
+
+
+
+
+
+
+
+/*
+Показать все оценки которые есть у всех
+*/
+--SELECT 
+--M.mark_date AS 'дата',
+--M.mark AS 'оценка',
+--D.name AS 'дисциплина',
+--S.last_name + ' ' + S.first_name AS 'ученик',
+--C.name AS 'класс',
+--T.last_name + ' ' + T.first_name AS 'учитель'
+
+--FROM Marks AS M
+--JOIN Students AS S ON M.student_id = S.id
+--JOIN Disciplines AS D ON M.discipline_id = D.id
+--JOIN Teachers AS T ON M.teacher_id = T.id
+--JOIN Classes AS C ON S.class_id = C.id
+
+
+
+
+
+
+/*
+Показать все оценки определённого студента
+*/
+--SELECT 
+--M.mark_date AS 'дата',
+--M.mark AS 'оценка',
+--D.name AS 'дисциплина',
+--S.last_name + ' ' + S.first_name AS 'ученик',
+--C.name AS 'класс',
+--T.last_name + ' ' + T.first_name AS 'учитель'
+--FROM Marks AS M
+--JOIN Students AS S ON M.student_id = S.id
+--JOIN Disciplines AS D ON M.discipline_id = D.id
+--JOIN Teachers AS T ON M.teacher_id = T.id
+--JOIN Classes AS C ON S.class_id = C.id
+--WHERE S.id = 5
 
 
 
@@ -461,4 +652,121 @@ WHERE Cl.name = N'9-Б'
 
 
 
+/*
+Посчитать среднюю арифметическую оценку по каждому модулю
+*/
+--SELECT 
+--D.id, D.name, AVG(CAST(M.mark AS FLOAT))
+--FROM Marks AS M
+--FULL JOIN Disciplines AS D ON M.discipline_id = D.id
+--GROUP BY D.id, D.name
+
+
+
+
+
+/*
+Получить среднюю оценку по всем модулям у каждого студента
+*/
+--SELECT 
+--S.id, S.last_name, AVG(CAST(M.mark AS FLOAT))
+--FROM Marks AS M
+--JOIN Disciplines AS D ON M.discipline_id = D.id
+--JOIN Students AS S ON M.student_id = S.id
+--GROUP BY S.id, S.last_name
+
+
+
+
+
+/*
+Посчитать сколько всего учеников в школе
+*/
+--SELECT COUNT(id) AS result
+--FROM Students
+
+/*
+Посчитать сколько учеников в каждом классе
+*/
+--SELECT C.id, C.name, COUNT(S.id) AS 'Кол-во сучеников в классе'
+--FROM Students AS S
+--JOIN Classes AS C ON S.class_id = C.id
+--GROUP BY C.id, C.name
+
+
+
+
+
+
+
+
+/*
+Вывести расписание для учителя
+*/
+--SELECT 
+--DoW.name AS 'День недели',
+--LN.id AS 'Номер урока',
+--LN.start_time AS 'Начало урока',
+--LN.end_time AS 'Конец урока',
+--D.name AS 'Дисциплина',
+--CA.name AS 'Кабинет',
+--CL.name AS 'Класс'
+--FROM Shedule AS SH
+--JOIN Cabinets AS CA ON SH.cabinet_id = CA.id
+--JOIN DayOfWeeks AS DoW ON SH.day_of_week_id = DoW.id
+--JOIN LessonNumbers AS LN ON SH.lesson_number_id = LN.id
+--JOIN Disciplines AS D ON SH.discipline_id = D.id
+--JOIN Teachers AS T ON SH.teacher_id = T.id
+--JOIN Classes AS CL ON SH.class_id = CL.id
+--WHERE T.last_name = N'Перельман'
+--ORDER BY Dow.id, LN.id
+
+
+
+
+
+
+
+
+
+
+
+
+--/*
+--Найти кабинеты, которые свободны или заняты в выбранный день и выбранное время
+--*/
+--DECLARE @day INT = 1,
+--@lesson_number INT = 4
+--/*
+--Найти кабинеты, которые ЗАНЯТЫ в выбранный день и выбранное время
+--*/
+--SELECT cabinet_id FROM Shedule WHERE day_of_week_id = @day AND lesson_number_id = @lesson_number
+
+
+--/*
+--Найти кабинеты, которые СВОБОДНЫ в выбранный день и выбранное время
+--*/
+--SELECT * 
+--FROM Cabinets AS C
+--WHERE C.id NOT IN (SELECT cabinet_id FROM Shedule WHERE day_of_week_id = @day AND lesson_number_id = @lesson_number)
+
+
+
+
+
+
+
+
+
+
+/*
+Студенты без оценок
+*/
+--SELECT 
+--S.last_name + ' ' + S.first_name AS 'Ученик',
+--C.name AS 'Класс'
+--FROM Marks AS M
+--RIGHT JOIN Students AS S ON M.student_id = S.id
+--JOIN Classes AS C ON S.class_id = C.id
+--WHERE M.id IS NULL
 
