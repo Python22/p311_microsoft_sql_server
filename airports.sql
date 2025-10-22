@@ -398,3 +398,152 @@
 --WHERE S.departure_airport_id = (SELECT id FROM Airports WHERE full_name = N'Храброво')
 --ORDER BY (S.departure_time)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+■ вывести информацию о рейсах и их длительности полета по времени;
+*/
+--SELECT 
+--A.city AS 'Город отправления',
+--A.full_name AS 'Аэропорт отправления',
+--A.short_name AS 'ИКАО',
+--AD.city AS 'Город прибытия',
+--AD.full_name AS 'Аэропорт прибытия',
+--AD.short_name AS 'ИКАО',
+--S.departure_time AS 'Время вылета',
+--S.arrival_time AS 'Время прилёта',
+--DoW.name AS 'День вылета',
+--CASE WHEN S.arrival_time >= S.departure_time
+--	THEN DATEDIFF(HOUR, S.departure_time, S.arrival_time)
+--	ELSE DATEDIFF(HOUR, S.departure_time, S.arrival_time) + 24
+--END AS duration
+--FROM Shedule AS S
+--JOIN Airports AS A ON S.departure_airport_id = A.id
+--JOIN Airports AS AD ON S.destination_airport_id = AD.id
+--JOIN SheduleDays AS SD ON SD.shedule_id = S.id
+--JOIN DayOfWeeks AS DoW ON SD.day_of_weeks_id = DoW.id
+--ORDER BY (duration) DESC
+
+
+
+
+
+
+
+
+/*
+■ показать все рейсы, длительность полета которых превышает два часа;
+*/
+--SELECT 
+--A.city AS 'Город отправления',
+--A.full_name AS 'Аэропорт отправления',
+--A.short_name AS 'ИКАО',
+--AD.city AS 'Город прибытия',
+--AD.full_name AS 'Аэропорт прибытия',
+--AD.short_name AS 'ИКАО',
+--S.departure_time AS 'Время вылета',
+--S.arrival_time AS 'Время прилёта',
+--DoW.name AS 'День вылета',
+--CASE WHEN S.arrival_time >= S.departure_time
+--	THEN DATEDIFF(HOUR, S.departure_time, S.arrival_time)
+--	ELSE DATEDIFF(HOUR, S.departure_time, S.arrival_time) + 24
+--END AS duration
+--FROM Shedule AS S
+--JOIN Airports AS A ON S.departure_airport_id = A.id
+--JOIN Airports AS AD ON S.destination_airport_id = AD.id
+--JOIN SheduleDays AS SD ON SD.shedule_id = S.id
+--JOIN DayOfWeeks AS DoW ON SD.day_of_weeks_id = DoW.id
+--WHERE 
+--	CASE WHEN S.arrival_time >= S.departure_time
+--		THEN DATEDIFF(HOUR, S.departure_time, S.arrival_time)
+--		ELSE DATEDIFF(HOUR, S.departure_time, S.arrival_time) + 24
+--	END > 2
+--ORDER BY (duration) DESC
+
+
+
+
+
+
+
+
+/*
+■ получить количество рейсов в каждый город;
+*/
+--SELECT A.city, COUNT(*) AS 'Кол-во рейсов в данный город'
+--FROM Shedule AS S
+--JOIN Airports AS A ON S.destination_airport_id = A.id
+--GROUP BY A.city
+
+
+
+
+/*
+■ показать город, в который наиболее часто осуществляются полеты;
+*/
+--SELECT TOP 1 A.city, COUNT(*) AS result
+--FROM Shedule AS S
+--JOIN Airports AS A ON S.destination_airport_id = A.id
+--GROUP BY A.city
+--ORDER BY (result) DESC
+
+
+
+
+
+
+
+
+
+/*
+Продажа билета пассажиру с проверкой наличия места в данном рейсе
+*/
+DECLARE
+@flight_id INT = 15,
+@passenger_id INT = 2,
+@ticket_type_id INT = (SELECT id FROM TicketsType WHERE name = N'Эконом класс'),
+@econom_passenger_capacity INT,
+@busines_passenger_capacity INT,
+@sold_tickets INT
+
+
+BEGIN TRAN;
+	SELECT 
+		@sold_tickets = (SELECT COUNT(T.id) FROM Tickets AS T WHERE T.flight_id = @flight_id AND T.ticket_type = @ticket_type_id),
+		@econom_passenger_capacity = A.max_passengers_capacity - A.max_business_capacity,
+		@busines_passenger_capacity = A.max_business_capacity
+	FROM Flights AS F
+	JOIN Airplanes AS A ON F.airplane_id = A.id
+	PRINT @econom_passenger_capacity
+	PRINT @busines_passenger_capacity 
+	PRINT @sold_tickets
+	print  @ticket_type_id	
+	IF (@ticket_type_id = 1 AND @sold_tickets < @econom_passenger_capacity) OR (@ticket_type_id = 2 AND @sold_tickets < @busines_passenger_capacity)
+		BEGIN
+			PRINT 'begin'
+			INSERT INTO Tickets
+			(passenger_id, ticket_type, flight_id)
+			VALUES
+			(@passenger_id, @ticket_type_id, @flight_id)
+			COMMIT TRAN
+			PRINT N'билет продан'
+		END
+	ELSE
+		BEGIN
+			ROLLBACK TRAN
+			PRINT N'Нет мест указанного класса на данный рейс'
+		END
+	
+SELECT * FROM Tickets
