@@ -510,40 +510,86 @@
 /*
 Продажа билета пассажиру с проверкой наличия места в данном рейсе
 */
-DECLARE
-@flight_id INT = 15,
-@passenger_id INT = 2,
-@ticket_type_id INT = (SELECT id FROM TicketsType WHERE name = N'Эконом класс'),
-@econom_passenger_capacity INT,
-@busines_passenger_capacity INT,
-@sold_tickets INT
+--DECLARE
+--@flight_id INT = 15,
+--@passenger_id INT = 2,
+--@ticket_type_id INT = (SELECT id FROM TicketsType WHERE name = N'Эконом класс'),
+--@econom_passenger_capacity INT,
+--@busines_passenger_capacity INT,
+--@sold_tickets INT
 
 
-BEGIN TRAN;
-	SELECT 
-		@sold_tickets = (SELECT COUNT(T.id) FROM Tickets AS T WHERE T.flight_id = @flight_id AND T.ticket_type = @ticket_type_id),
-		@econom_passenger_capacity = A.max_passengers_capacity - A.max_business_capacity,
-		@busines_passenger_capacity = A.max_business_capacity
-	FROM Flights AS F
-	JOIN Airplanes AS A ON F.airplane_id = A.id
-	PRINT @econom_passenger_capacity
-	PRINT @busines_passenger_capacity 
-	PRINT @sold_tickets
-	print  @ticket_type_id	
-	IF (@ticket_type_id = 1 AND @sold_tickets < @econom_passenger_capacity) OR (@ticket_type_id = 2 AND @sold_tickets < @busines_passenger_capacity)
-		BEGIN
-			PRINT 'begin'
-			INSERT INTO Tickets
-			(passenger_id, ticket_type, flight_id)
-			VALUES
-			(@passenger_id, @ticket_type_id, @flight_id)
-			COMMIT TRAN
-			PRINT N'билет продан'
-		END
-	ELSE
-		BEGIN
-			ROLLBACK TRAN
-			PRINT N'Нет мест указанного класса на данный рейс'
-		END
+--BEGIN TRAN;
+--	SELECT 
+--		@sold_tickets = (SELECT COUNT(T.id) FROM Tickets AS T WHERE T.flight_id = @flight_id AND T.ticket_type = @ticket_type_id),
+--		@econom_passenger_capacity = A.max_passengers_capacity - A.max_business_capacity,
+--		@busines_passenger_capacity = A.max_business_capacity
+--	FROM Flights AS F
+--	JOIN Airplanes AS A ON F.airplane_id = A.id
+--	PRINT @econom_passenger_capacity
+--	PRINT @busines_passenger_capacity 
+--	PRINT @sold_tickets
+--	print  @ticket_type_id	
+--	IF (@ticket_type_id = 1 AND @sold_tickets < @econom_passenger_capacity) OR (@ticket_type_id = 2 AND @sold_tickets < @busines_passenger_capacity)
+--		BEGIN
+--			PRINT 'begin'
+--			INSERT INTO Tickets
+--			(passenger_id, ticket_type, flight_id)
+--			VALUES
+--			(@passenger_id, @ticket_type_id, @flight_id)
+--			COMMIT TRAN
+--			PRINT N'билет продан'
+--		END
+--	ELSE
+--		BEGIN
+--			ROLLBACK TRAN
+--			PRINT N'Нет мест указанного класса на данный рейс'
+--		END
 	
-SELECT * FROM Tickets
+--SELECT * FROM Tickets
+
+
+
+
+
+
+
+
+
+
+
+/*
+Показать рейсы из одного аэропорта в другой с одной пересадкой
+*/
+
+--DECLARE 
+--@airport_id_from INT = (SELECT id FROM Airports WHERE full_name = N'Храброво'),
+--@airport_id_to INT = (SELECT id FROM Airports WHERE full_name = N'Адлер')
+
+--SELECT 
+--A1.city + ' ' + A1.full_name + '(' + A1.short_name + ')' AS 'Точка вылета',
+--S1.departure_time AS 'Время вылета',
+--S1.arrival_time AS 'Время прилёта',
+--A_TRANSFER.city + ' ' + A_TRANSFER.full_name + '(' + A_TRANSFER.short_name + ')' AS 'Пересадка',
+--S2.departure_time AS 'Время вылета',
+--S2.arrival_time AS 'Время прилёта',
+--A2.city + ' ' + A2.full_name + '(' + A2.short_name + ')' AS 'Конечный аеропорт'
+
+--FROM Shedule AS S1
+--JOIN Shedule AS S2 ON S1.destination_airport_id = S2.departure_airport_id
+--JOIN Airports AS A1 ON S1.departure_airport_id = A1.id
+--JOIN Airports AS A2 ON S2.destination_airport_id = A2.id
+--JOIN Airports AS A_TRANSFER ON S2.departure_airport_id = A_TRANSFER.id
+--WHERE S1.departure_airport_id = @airport_id_from AND S2.destination_airport_id = @airport_id_to
+
+
+
+
+
+
+
+
+
+
+
+
