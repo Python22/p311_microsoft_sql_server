@@ -5,7 +5,6 @@ CREATE DATABASE p311_music_store
 USE p311_music_store
 
 
- 1
 CREATE TABLE Groups (
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	name NVARCHAR(50) NOT NULL,
@@ -59,6 +58,15 @@ CREATE TABLE Records (
 	CONSTRAINT CHK_Records_quantity_on_store CHECK (quantity_on_store >= 0),
 	CONSTRAINT CHK_Records_price CHECK (price >= 0)
 )
+
+CREATE TABLE RecordsMusics (
+	music_id INT NOT NULL,
+	record_id INT NOT NULL,
+	PRIMARY KEY (music_id, record_id),
+	CONSTRAINT FK_RecordsMusics_Music FOREIGN KEY (music_id) REFERENCES Music(id),
+	CONSTRAINT FK_RecordsMusics_Genres FOREIGN KEY (record_id) REFERENCES Records(id)
+)
+
 
 
 CREATE TABLE Users (
