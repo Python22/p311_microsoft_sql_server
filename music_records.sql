@@ -1,3 +1,5 @@
+DROP DATABASE p311_music_store
+
 CREATE DATABASE p311_music_store
 
 USE p311_music_store
@@ -52,6 +54,7 @@ CREATE TABLE Records (
 	group_id INT,
 	quantity_on_store INT NOT NULL,
 	price MONEY NOT NULL,
+	is_on_sale BIT NOT NULL, 
 	CONSTRAINT FK_Records_Groups FOREIGN KEY (group_id) REFERENCES Groups(id),
 	CONSTRAINT CHK_Records_quantity_on_store CHECK (quantity_on_store >= 0),
 	CONSTRAINT CHK_Records_price CHECK (price >= 0)
@@ -69,3 +72,11 @@ CREATE TABLE Users (
 )
 
 
+CREATE TABLE UsersShopping (
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	record_id INT NOT NULL,
+	shopping_date DATE NOT NULL,
+	CONSTRAINT FK_UsersShopping_Users FOREIGN KEY (user_id) REFERENCES Users(id),
+	CONSTRAINT FK_UsersShopping_Records FOREIGN KEY (record_id) REFERENCES Records(id)
+)
